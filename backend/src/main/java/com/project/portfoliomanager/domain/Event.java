@@ -1,5 +1,6 @@
 package com.project.portfoliomanager.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
@@ -11,30 +12,34 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
+    @NotBlank
     private int year;
+    @NotBlank
     private int length;
+    @NotBlank
     private String name;
+    @NotBlank
     private String type;
+    @NotBlank
     private String description;
+    @NotBlank
+    private boolean ended;
 
-    public Event() {
-
-    }
-
-    public Event(int year, int length, String name, String type, String description) {
+    public Event(int year, int length, String name, String type, String description, boolean ended) {
         this.year = year;
         this.length = length;
         this.name = name;
         this.type = type;
         this.description = description;
+        this.ended = ended;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,6 +81,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isEnded() {
+        return ended;
+    }
+
+    public void setEnded(boolean ended) {
+        this.ended = ended;
     }
 
     @Override

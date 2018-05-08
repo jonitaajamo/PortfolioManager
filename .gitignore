@@ -227,5 +227,8 @@ typings/
 *.rss
 *.xhtml
 
+# properties
+application.properties
+*.properties
 
 # End of https://www.gitignore.io/api/web,java,node,maven,macos,linux,intellij,visualstudiocode
