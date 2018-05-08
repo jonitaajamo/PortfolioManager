@@ -1,2 +1,2 @@
 # PortfolioManager
-Simple web app to manage portfolio. End project for Software development technologies course.
+Simple web app to manage portfolio. Final project for Software development technologies course.
