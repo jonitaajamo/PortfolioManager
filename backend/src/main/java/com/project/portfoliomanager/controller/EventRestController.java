@@ -3,6 +3,7 @@ package com.project.portfoliomanager.controller;
 import com.project.portfoliomanager.domain.Event;
 import com.project.portfoliomanager.domain.EventRepository;
 
+import com.project.portfoliomanager.domain.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,14 +28,14 @@ public class EventRestController {
         return repository.save(event);
     }
 
-    @RequestMapping(value="/rest/books/{id}", method = RequestMethod.GET)
-    public @ResponseBody Event findAllEvents (@PathVariable("id") Long eventId) {
-        return repository.findById(eventId);
+    @GetMapping("/events/{id}")
+    public @ResponseBody Event findOneEvent (@PathVariable("id") Long eventId) {
+        return repository.findById(eventId).orElseThrow(() -> new ResourceNotFoundException("Event", "id", eventId));
     }
 
-    @PutMapping("/notes/{id}")
+    @PutMapping("/events/{id}")
     public Event updateEvent(@PathVariable(value="id") Long eventId, @Valid @RequestBody Event eventDetails) {
-        Event event = repository.findById(eventId);
+        Event event = repository.findById(eventId).orElseThrow(() -> new ResourceNotFoundException("Event", "id", eventId));;
 
         event.setYear(eventDetails.getYear());
         event.setLength(eventDetails.getLength());
@@ -50,7 +51,7 @@ public class EventRestController {
 
     @DeleteMapping("/events/{id}")
     public ResponseEntity<?> deleteEvent(@PathVariable(value = "id") Long eventId) {
-        Event event = repository.findById(eventId);
+        Event event = repository.findById(eventId).orElseThrow(() -> new ResourceNotFoundException("Event", "id", eventId));;
 
         repository.delete(event);
 
