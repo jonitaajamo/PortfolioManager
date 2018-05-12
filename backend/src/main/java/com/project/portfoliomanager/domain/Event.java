@@ -1,17 +1,20 @@
 package com.project.portfoliomanager.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
+@Table(name = "events")
+@EntityListeners(AuditingEntityListener.class)
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private int year;
@@ -33,6 +36,10 @@ public class Event {
         this.type = type;
         this.description = description;
         this.ended = ended;
+    }
+
+    public Event(){
+
     }
 
     public Long getId() {

@@ -1,11 +1,10 @@
 package com.project.portfoliomanager.domain;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 
-public interface EventRepository extends CrudRepository<Event, Long> {
-
-    List<Event> findByName(String name);
+@Repository
+public interface EventRepository extends JpaRepository<Event, Long> {
 
 }
