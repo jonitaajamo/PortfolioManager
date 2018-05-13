@@ -33,7 +33,7 @@ class RenderEvents extends Component {
                                 <div className="has-text-right">
                                     <button
                                         className="button is-danger"
-                                        onClick={() => this.props.onEventDelete(item.id)}>X</button>
+                                        onClick={() => this.props.onEventDelete(2)}>X</button>
                                 </div>
                             </div>
 
