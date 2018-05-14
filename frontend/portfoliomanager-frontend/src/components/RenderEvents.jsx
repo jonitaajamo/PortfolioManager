@@ -33,7 +33,7 @@ class RenderEvents extends Component {
                                 <div className="has-text-right">
                                     <button
                                         className="button is-danger"
-                                        onClick={() => this.props.onEventDelete(2)}>X</button>
+                                        onClick={() => this.props.onEventDelete(item.id)}>X</button>
                                 </div>
                             </div>
 
@@ -45,7 +45,7 @@ class RenderEvents extends Component {
 
     render() {
         return (
-            <div className="column is-vertical is-half">
+            <div className="column is-vertical is-half is-offset-one-quarter">
                 {this.renderEvents()}
             </div>
         );

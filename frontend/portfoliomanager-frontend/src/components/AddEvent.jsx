@@ -10,7 +10,7 @@ class AddEvent extends Component {
             name: "",
             type: "",
             description: "",
-            ended: false
+            ended: ""
         })
     }
 
@@ -39,44 +39,71 @@ class AddEvent extends Component {
 
     render() {
         return (
-            <div className="column is-vertical is-half has-text-left">
+            <div className="column is-vertical is-half is-offset-one-quarter has-text-left">
                 <div className="box">
+                    <strong>Add new workplace or education</strong>
+                    <br/>
+                    <br/>
                     <form className="form" onSubmit={this.handleSubmit}>
-                        <label>
-                            Event name:
-                            <input type="text" value={this.state.name} onChange={this.handleNameChange}/>
-                        </label>
-                        <br/>
-                        <label>
-                            Starting (YYYY):
-                            <input type="number" value={this.state.year} onChange={this.handleYearChange}/>
-                        </label>
-                        <br/>
-                        <label>
-                            Event length (yrs):
+                        <div classaName="field">
+                            <label className="label">Event name:</label>
                             <input
+                                className="input"
+                                type="text"
+                                value={this.state.name}
+                                onChange={this.handleNameChange}
+                                placeholder="Name"/>
+                        </div>
+                        <br/>
+                        <div className="field">
+                            <label className="label">Started:</label>
+                            <input
+                                className="input"
+                                type="text"
+                                value={this.state.year}
+                                onChange={this.handleYearChange}
+                                placeholder="YYYY"/>
+                        </div>
+                        <br/>
+                        <div className="field">
+                            <label className="label">Event length (yrs):</label>
+                            <input
+                                className="input"
                                 type="number"
                                 value={this.state.year}
                                 onChange={this.handleLengthChange}/>
-                        </label>
+                        </div>
                         <br/>
-                        <label>
-                            Event is still ongoing:
-                            <input type="text" value={this.state.ended} onChange={this.handleEndedChange}/>
-                        </label>
-                        <br/>
-                        <label>
-                            Type:
-                            <input type="number" value={this.state.year} onChange={this.handleTypeChange}/>
-                        </label>
-                        <br/>
-                        <label>
-                            Description:
+                        <div className="field">
+                            <label className="label">Event is still ongoing:</label>
                             <input
+                                className="input"
                                 type="text"
-                                value={this.state.year}
-                                onChange={this.handleDescriptionChange}/>
-                        </label>
+                                value={this.state.ended}
+                                onChange={this.handleEndedChange}
+                                placeholder="false"/>
+                        </div>
+                        <br/>
+                        <div className="field">
+                            <label className="label">Type:</label>
+                            <input
+                                className="input"
+                                type="text"
+                                value={this.state.type}
+                                onChange={this.handleTypeChange}
+                                placeholder="school/work"/>
+                        </div>
+                        <br/>
+                        <div className="field">
+                            <label className="label">Description:
+                            </label>
+                            <textarea
+                                className="input"
+                                type="text"
+                                value={this.state.description}
+                                onChange={this.handleDescriptionChange}
+                                placeholder="Description"/>
+                        </div>
                         <br/>
                         <input type="submit" className="button is-primary" value="Submit"/>
                     </form>

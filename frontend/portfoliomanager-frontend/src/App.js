@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   fetchEventData() {
-    const url = "http://localhost:8080/events/"
+    const url = "http://localhost:8080/rest/events/"
     fetch(url, {
         method: "GET",
         headers: {
@@ -22,7 +22,7 @@ class App extends Component {
       })
       .then(response => response.json())
       .then(result => {
-        this.setState({eventData: result._embedded.events});
+        this.setState({eventData: result});
       });
   }
 
@@ -31,17 +31,18 @@ class App extends Component {
   }
 
   deleteEvent(id) {
-    const url = "http://localhost:8080/events"
+    const url = "http://localhost:8080/rest/events"
 
     fetch(url + "/" + id, {method: "DELETE"})
       .then(response => response.json())
       .then(response => {
-        this.setState({eventData: response._embedded.events})
+        this.setState({eventData: response})
       })
+      .catch(error => error);
   }
 
   addEvent(year, length, name, type, description, ended) {
-    const url = "http://192.168.0.39:8080/events";
+    const url = "http://localhost:8080/rest/events";
 
     fetch(url, {
       method: "POST",
@@ -61,7 +62,7 @@ class App extends Component {
         .then(response => response.json())
         .then(response => this.setState({
           eventData: [
-            ...this.state.response._embedded.events,
+            ...this.state.response,
             response
           ]
         }))
@@ -79,6 +80,7 @@ class App extends Component {
   render() {
     return (
       <div className="App container is-fluid">
+        <h1>Joni Taajamo's CV</h1>
         <RenderEvents
           eventData={this.state.eventData}
           onEventDelete={this
