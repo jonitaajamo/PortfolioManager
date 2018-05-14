@@ -16,7 +16,7 @@ class RenderEvents extends Component {
                     : "School";
 
                 return (
-                    <div className="box has-text-left">
+                    <div className="box has-text-left" key={key}>
                         <article>
                             <div className="media-content">
                                 <p>

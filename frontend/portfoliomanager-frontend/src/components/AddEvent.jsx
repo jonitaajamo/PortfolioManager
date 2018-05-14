@@ -14,20 +14,28 @@ class AddEvent extends Component {
         })
     }
 
-    handleNameChange(event) {
+    handleNameChange = event => {
         this.setState({name: event.target.value});
     }
 
-    handleYearChange(event) {
+    handleYearChange = event => {
         this.setState({year: event.target.value});
     }
 
-    handleLengthChange(event) {
+    handleLengthChange = event => {
         this.setState({length: event.target.value});
     }
 
-    handleDescriptionChange(event) {
+    handleDescriptionChange = event => {
         this.setState({description: event.target.value});
+    }
+
+    handleTypeChange = event => {
+        this.setState({type: event.target.value});
+    }
+
+    handleEndedChange = event => {
+        this.setState({ended: event.target.value});
     }
 
     handleSubmit(event) {
@@ -35,6 +43,14 @@ class AddEvent extends Component {
         this
             .props
             .onEventAdd(this.state.year, this.state.length, this.state.name, this.state.type, this.state.description, this.state.ended);
+        this.setState({
+            year: 0,
+            length: 0,
+            name: "",
+            type: "",
+            description: "",
+            ended: ""
+        })
     }
 
     render() {
@@ -44,8 +60,8 @@ class AddEvent extends Component {
                     <strong>Add new workplace or education</strong>
                     <br/>
                     <br/>
-                    <form className="form" onSubmit={this.handleSubmit}>
-                        <div classaName="field">
+                    <form className="form" onSubmit={(e) => this.handleSubmit(e)}>
+                        <div className="field">
                             <label className="label">Event name:</label>
                             <input
                                 className="input"
@@ -70,12 +86,12 @@ class AddEvent extends Component {
                             <input
                                 className="input"
                                 type="number"
-                                value={this.state.year}
+                                value={this.state.length}
                                 onChange={this.handleLengthChange}/>
                         </div>
                         <br/>
                         <div className="field">
-                            <label className="label">Event is still ongoing:</label>
+                            <label className="label">Event has ended:</label>
                             <input
                                 className="input"
                                 type="text"
@@ -98,8 +114,8 @@ class AddEvent extends Component {
                             <label className="label">Description:
                             </label>
                             <textarea
-                                className="input"
-                                type="text"
+                                className="textarea"
+                                rows="5"
                                 value={this.state.description}
                                 onChange={this.handleDescriptionChange}
                                 placeholder="Description"/>

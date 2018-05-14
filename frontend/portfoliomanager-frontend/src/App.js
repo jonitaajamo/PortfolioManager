@@ -34,39 +34,37 @@ class App extends Component {
     const url = "http://localhost:8080/rest/events"
 
     fetch(url + "/" + id, {method: "DELETE"})
-      .then(response => response.json())
-      .then(response => {
-        this.setState({eventData: response})
-      })
-      .catch(error => error);
+      .then(response => this.fetchEventData())
+      .catch(error => console.error(error));
   }
 
   addEvent(year, length, name, type, description, ended) {
     const url = "http://localhost:8080/rest/events";
 
+    console.log("Täs nää:", year, length, name, type, description, ended);
     fetch(url, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json"
       },
-      body: JSON
-        .stringify({
-        year: year,
-        length: length,
-        name: name,
-        type: type,
-        description: description,
-        ended: ended
+        body: JSON.stringify({
+          year: year,
+          length: length,
+          name: name,
+          type: type,
+          description: description,
+          ended: ended
+        })
       })
-        .then(response => response.json())
-        .then(response => this.setState({
-          eventData: [
-            ...this.state.response,
-            response
-          ]
-        }))
-    })
+      .then(response => response.json())
+      .then(response => this.setState({
+        eventData: [
+          ...this.state.eventData,
+          response
+        ]
+      }))
+      .catch(error => error);
   }
 
   onEventDelete(id) {
